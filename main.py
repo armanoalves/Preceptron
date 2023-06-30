@@ -23,7 +23,7 @@ def iris():
     comparacao = np.concatenate((setosa_half2.iloc[:,4].replace({"setosa":1}).values,versicolor_half2.iloc[:,4].replace({"versicolor":-1}).values),axis=0)
     predict = np.concatenate((setosa_half2.iloc[:,:4].values,versicolor_half2.iloc[:,:4].values),axis=0)
 
-    perceptron = Perceptron(learning_rate=0.1, n_iterations=5)
+    perceptron = Perceptron(learning_rate=0.1, n_iterations=2)
     perceptron.fit(X, y)
     # Testando com os próprios dados de treinamento
     predictions = perceptron.predict(predict)
@@ -47,9 +47,9 @@ def glass():
 
     predict = np.concatenate((df.iloc[35:70,1:10].values,df.iloc[105:140,1:10].values),axis=0)
 
-    perceptron = Perceptron(learning_rate=0.01, n_iterations=10000)
+    perceptron = Perceptron(learning_rate=0.01, n_iterations=1000)
     perceptron.fit(X, y)
-    # Testando com os próprios dados de treinamento
+    # Testando perceptron.fit(X, y) com os próprios dados de treinamento
     predictions = perceptron.predict(predict)
     contador = 0
     for valor in range(len(comparacao)):
@@ -59,5 +59,5 @@ def glass():
     print(F"Taxa de acerto:{resultado:.2f}%")
     tempo_final = (time.time()) # em segundos
     print(f"{tempo_final - tempo_inicial:.2f} segundos")
-#glass()
-iris()
+glass()
+#iris()
